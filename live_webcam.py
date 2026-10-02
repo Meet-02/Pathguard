@@ -69,7 +69,7 @@ def load_live_roi(roi_file, frame_w, frame_h):
     no_roi = "NO ROI - whole frame counts"
     if not roi_file or not os.path.exists(roi_file):
         print(f"[ROI] WARNING: no ROI file found ({roi_file}).\n"
-              "      Running WITHOUT an ROI: any person/vehicle anywhere in the frame triggers STOP.\n"
+              "      Running WITHOUT an ROI: any moving person/vehicle anywhere in the frame triggers STOP.\n"
               "      Draw one with:  python set_roi.py --source 0")
         return None, no_roi
 
@@ -390,7 +390,7 @@ def run_live(args):
                 n_alerts += 1
             if state != logged_state:  # one console line per transition, not per frame
                 ids = result.roi_track_ids if result else []
-                print(f"\n[ALERT] {'STOP - object in ROI, ids ' + str(ids) if state == SafetyState.STOP else 'cleared - SAFE'}"
+                print(f"\n[ALERT] {'STOP - moving object in ROI, ids ' + str(ids) if state == SafetyState.STOP else 'cleared - SAFE'}"
                       f" (frame {pipeline.frame_idx})")
                 logged_state = state
 
