@@ -1,2 +1,4 @@
 ultralytics
 opencv-python
+lapx            # ByteTrack needs this; listing it avoids a failed auto-install on first run
+# pyserial       # only for --use-relay (real Arduino over serial); not needed for laptop testing
